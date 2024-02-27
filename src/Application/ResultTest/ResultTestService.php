@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App\Application\ResultTest;
 
-use App\Infrastructure\Repository\TestRepository;
+use App\Infrastructure\Entity\Test;
+use App\Infrastructure\Entity\TestAnswers;
 use App\Infrastructure\Repository\TestAnswersRepository;
+use App\Infrastructure\Repository\TestRepository;
 
 class ResultTestService implements ResultTestServiceInterface
 {
     public function __construct(
         private readonly TestRepository $testRepository,
         private readonly TestAnswersRepository $testAnswerRepository,
-    )
-    {
-    }
+    ) {}
 
+    /**
+     * @return array<string, array<string, array<int, TestAnswers>>|Test>
+     */
     public function getResultInfo(int $testId, string $sessionId): array
     {
         $test = $this->testRepository->findOneBy(['id' => $testId, 'session_id' => $sessionId]);
@@ -41,8 +44,8 @@ class ResultTestService implements ResultTestServiceInterface
             'test' => $test,
             'answers' => [
                 'correct' => $correct,
-                'inCorrect' => $inCorrect
-            ]
+                'inCorrect' => $inCorrect,
+            ],
         ];
     }
 }

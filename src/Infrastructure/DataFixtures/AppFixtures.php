@@ -1,17 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\DataFixtures;
 
+use App\Infrastructure\Entity\Answer;
+use App\Infrastructure\Entity\Question;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpKernel\KernelInterface;
-use App\Infrastructure\Entity\Question;
-use App\Infrastructure\Entity\Answer;
 
 class AppFixtures extends Fixture
 {
-    private $data = null;
+    private $data;
 
     public function __construct(
         private readonly KernelInterface $appKernel

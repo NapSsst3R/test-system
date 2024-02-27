@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\PassTest\FormData;
 
-use App\Infrastructure\Entity\Question;
 use App\Infrastructure\Entity\Answer;
+use App\Infrastructure\Entity\Question;
 
 interface CollectServiceInterface
 {
@@ -15,4 +15,9 @@ interface CollectServiceInterface
      * @return array|Question[]
      */
     public function getQuestions(): array;
+
+    /**
+     * @return Answer[][]|array
+     */
+    public function getChoices(): array;
 }

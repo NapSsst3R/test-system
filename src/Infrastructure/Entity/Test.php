@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Entity;
 
 use App\Infrastructure\Repository\TestRepository;
@@ -18,7 +20,7 @@ class Test
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $session_id = null;
+    private ?string $sessionId = null;
 
     #[ORM\Column]
     private ?bool $finish = null;
@@ -26,7 +28,7 @@ class Test
     #[ORM\Column(type: Types::DATE_MUTABLE, options: ['default' => 'CURRENT_DATE'])]
     private ?\DateTimeInterface $testDate = null;
 
-    #[ORM\OneToMany(targetEntity: TestAnswers::class, mappedBy: 'test', cascade: ["persist"], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: TestAnswers::class, mappedBy: 'test', cascade: ['persist'], orphanRemoval: true)]
     private Collection $testAnswers;
 
     public function __construct()
@@ -47,12 +49,12 @@ class Test
 
     public function getSessionId(): ?string
     {
-        return $this->session_id;
+        return $this->sessionId;
     }
 
-    public function setSessionId(string $session_id): static
+    public function setSessionId(string $sessionId): static
     {
-        $this->session_id = $session_id;
+        $this->sessionId = $sessionId;
 
         return $this;
     }

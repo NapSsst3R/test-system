@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Application\ResultTest;
 
+use App\Infrastructure\Entity\Test;
+use App\Infrastructure\Entity\TestAnswers;
+
 interface ResultTestServiceInterface
 {
     /**
-     * @param int $testId
-     * @param string $sessionId
-     *
-     * @return array<string, array<string, string|array<string, string|int|bool>>>
+     * @return array<string, array<string, array<int, TestAnswers>>|Test>
      */
     public function getResultInfo(int $testId, string $sessionId): array;
 }

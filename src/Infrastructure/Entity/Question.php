@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Entity;
 
 use App\Infrastructure\Repository\QuestionRepository;
@@ -18,7 +20,7 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'question', cascade: ["persist"],  orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'question', cascade: ['persist'], orphanRemoval: true)]
     private Collection $answers;
 
     public function __construct()

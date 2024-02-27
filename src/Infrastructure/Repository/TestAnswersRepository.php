@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Repository;
 
 use App\Infrastructure\Entity\TestAnswers;
@@ -9,10 +11,10 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<TestAnswers>
  *
- * @method TestAnswers|null find($id, $lockMode = null, $lockVersion = null)
- * @method TestAnswers|null findOneBy(array $criteria, array $orderBy = null)
- * @method TestAnswers[]    findAll()
- * @method TestAnswers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method null|TestAnswers find($id, $lockMode = null, $lockVersion = null)
+ * @method null|TestAnswers findOneBy(array $criteria, array $orderBy = null)
+ * @method TestAnswers[] findAll()
+ * @method TestAnswers[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class TestAnswersRepository extends ServiceEntityRepository
 {
@@ -32,17 +34,16 @@ class TestAnswersRepository extends ServiceEntityRepository
             ->andWhere('testAnswer.test = :testId')
             ->setParameter('testId', $testId)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
-//    public function findOneBySomeField($value): ?TestAnswers
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?TestAnswers
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

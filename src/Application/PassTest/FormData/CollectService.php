@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Application\PassTest\FormData;
 
-use App\Infrastructure\Repository\AnswerRepository;
 use App\Infrastructure\Entity\Answer;
 use App\Infrastructure\Entity\Question;
+use App\Infrastructure\Repository\AnswerRepository;
 
 class CollectService implements CollectServiceInterface
 {
     /**
-     * @var array|Answer[]
+     * @var Answer[]|array
      */
     public array $answers = [];
 
@@ -47,7 +47,7 @@ class CollectService implements CollectServiceInterface
 
     public function addQuestion(Question $question): void
     {
-        if (!isset($questions[$question->getId()])) {
+        if (!isset($this->questions[$question->getId()])) {
             $this->questions[$question->getId()] = $question;
         }
     }
@@ -57,6 +57,9 @@ class CollectService implements CollectServiceInterface
         $this->choices[$questionId][] = $answer;
     }
 
+    /**
+     * @return Answer[][]
+     */
     public function getChoices(): array
     {
         return $this->choices;
