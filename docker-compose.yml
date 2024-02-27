@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  php-fpm:
+    container_name: app
+    build:
+      context: .docker/php-fpm
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+    networks:
+      - internal
+  nginx:
+    container_name: nginx
+    build:
+      context: .docker/nginx
+    ports:
+      - "3800:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    ports:
+      - "64321:5432"
+    networks:
+      - internal
+      - proxy
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+networks:
+  proxy:
+    external: true
+  internal:

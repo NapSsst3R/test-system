@@ -1,0 +1,19 @@
+{# templates/task/pass.test.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Результат вашего теста!{% endblock %}
+
+{% block body %}
+    <p>Тест: {{ test.id }}</p>
+    <p>Дата: {{ test.testDate|date() }}</p>
+
+    <p>Вы ответили верно на следующие вопросы:</p>
+    {% for answer in answers.correct %}
+        <p>Вопрос: {{ answer.question.title }}</p>
+    {% endfor %}
+
+    <p>Вы ответили не верно на следующие вопросы:</p>
+    {% for answer in answers.inCorrect %}
+        <p>Вопрос: {{ answer.question.title }}</p>
+    {% endfor %}
+{% endblock %}

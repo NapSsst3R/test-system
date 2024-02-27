@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Ruleset"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Ruleset for PHP Mess Detector that enforces coding standards</description>
+
+    <rule ref="rulesets/cleancode.xml">
+        <exclude name="StaticAccess"/>
+        <exclude name="BooleanArgumentFlag"/>
+        <exclude name="ElseExpression"/>
+        <exclude name="MissingImport"/>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml">
+        <exclude name="TooManyFields"/>
+        <exclude name="CyclomaticComplexity"/>
+        <exclude name="NPathComplexity"/>
+        <exclude name="ExcessiveMethodLength"/>
+        <exclude name="ExcessiveClassComplexity"/>
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
+        <properties>
+            <property name="reportLevel" value="22"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="CamelCasePropertyName"/>
+        <exclude name="Superglobals"/>
+    </rule>
+
+    <rule ref="rulesets/design.xml">
+        <exclude name="CouplingBetweenObjects"/>
+    </rule>
+
+    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="maximum" value="19"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
+        <exclude name="LongVariable"/>
+        <exclude name="LongClassName"/>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id,q,i,j,v,e,f,fp,to,tz"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="50"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongClassName">
+        <properties>
+            <property name="maximum" value="50"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/unusedcode.xml">
+        <!-- PHPMD cannot recognize parameters that are enforced by an interface -->
+        <exclude name="UnusedFormalParameter"/>
+    </rule>
+
+    <exclude-pattern>*src/Kernel.php</exclude-pattern>
+    <exclude-pattern>*tests/**/*.php</exclude-pattern>
+</ruleset>

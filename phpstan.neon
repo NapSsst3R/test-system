@@ -1,0 +1,24 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+parameters:
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+    tmpDir: ./var/.phpstan-cache
+    level: 6
+    excludePaths:
+        - var/
+        - vendor/
+        - web/
+        - tests/
+    paths:
+        - src
+    inferPrivatePropertyTypeFromConstructor: true
+    checkFunctionNameCase: true
+    tipsOfTheDay: false
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+    parallel:
+        minimumNumberOfJobsPerProcess: 2
+        maximumNumberOfProcesses: 16
+        processTimeout: 600.0
+        jobSize: 10

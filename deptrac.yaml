@@ -1,0 +1,45 @@
+parameters:
+  paths:
+    - ./src
+  exclude_files:
+    - '#.*test.*#'
+  layers:
+    - name: Commands
+      collectors:
+        - type: directory
+          regex: src/Controller/Cli/.*
+    - name: Controller
+      collectors:
+        - type: className
+          regex: App\\Controller\\Web\\.*Controller
+        - type: directory
+          regex: src/Controller/Mq/.*
+    - name: Application
+      collectors:
+        - type: className
+          regex: App\\Application\\.*Service.*
+    - name: UseCaseResult
+      collectors:
+        - type: className
+          regex: App\\Application\\.*Dto\\.*
+    - name: Infrastructure
+      collectors:
+        - type: className
+          regex: App\\Infrastructure\\.*\\.*
+  ruleset:
+    Commands:
+      - Application
+      - UseCaseResult
+      - Infrastructure
+      - UseCaseResult
+    Controller:
+      - Application
+      - UseCaseResult
+    Application:
+      - Infrastructure
+      - UseCaseResult
+    UseCaseResult:
+      - UseCaseResult
+    Infrastructure:
+      - UseCaseResult
+      - Application
