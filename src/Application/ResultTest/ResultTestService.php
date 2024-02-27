@@ -21,7 +21,7 @@ class ResultTestService implements ResultTestServiceInterface
      */
     public function getResultInfo(int $testId, string $sessionId): array
     {
-        $test = $this->testRepository->findOneBy(['id' => $testId, 'session_id' => $sessionId]);
+        $test = $this->testRepository->findOneBy(['id' => $testId, 'sessionId' => $sessionId]);
 
         if (!$test) {
             // @todo throw Exception
