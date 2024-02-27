@@ -4,7 +4,7 @@ DCC=docker compose
 
 .DEFAULT_GOAL := help
 
-start: up composer-install ## Run containers, composer install and migrate
+start: up composer-install schema-update fixtures-load  ## Run containers, composer install and migrate
 
 up: ## Run containers
 	$(DCC) up -d --remove-orphans
